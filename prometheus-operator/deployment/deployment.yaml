@@ -25,7 +25,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - args:
-            - --kubelet-service=kube-system/kubelet #useful for monitoring persistent volumes
+            - --kubelet-service=kube-system/kubelet #Service/Endpoints object to write kubelets into in format
             - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.63.0 #an add-on to prometheus that monitors changes in prometheus.yaml and an HTTP request reloads the prometheus configuration
           image: quay.io/prometheus-operator/prometheus-operator:v0.63.0
           name: prometheus-operator
