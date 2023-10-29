@@ -1,0 +1,18 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: myapp
+  namespace: staging
+  labels:
+    prometheus: main # must match the label used in the prometheus object
+spec:
+  namespaceSelector: # if this app was created in the monitoring namespace, this section becomes compulsory
+    matchNames:
+      - staging
+  selector:
+    matchLabels: # should match labels used on your deployment
+      app: myapp
+  podMetricsEndpoints:
+    - port: http-metrics # this is where you use the name on your container port
+      path: /metrics # this is the default
