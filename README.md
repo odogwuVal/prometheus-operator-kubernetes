@@ -9,3 +9,4 @@ metadata:
   labels:
     monitoring: prometheus
 ```
+##### Reference: Anuj Putra: https://github.com/antonputra/tutorials/blob/main/lessons/154/myapp
