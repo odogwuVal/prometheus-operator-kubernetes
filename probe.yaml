@@ -15,9 +15,8 @@ spec:
   targets:
     staticConfig:
       static:
-        - https://vreg.gov.ng
-        - https://www.vreg.gov.ng
-        - https://vreg.gov.ng/api
-        - https://idec.gov.ng
-        - https://api.idec.gov.ng
+        - http://vregfrontend-deployment-chart.vreg.svc.cluster.local
+        - http://vreg-deployment-chart.vreg.svc.cluster.local
+        - http://idec-deployment-chart.vreg.svc.cluster.local
+        - http://idec-frontend-deployment-chart.vreg.svc.cluster.local
         
