@@ -30,12 +30,12 @@ spec:
   # serviceMonitorNamespaceSelector:
   #   matchLabels:
   #     monitoring: prometheus
-  # probeSelector:
-  #   matchLabels:
-  #     prometheus: main
-  # probeNamespaceSelector:
-  #   matchLabels:
-  #     monitoring: prometheus
+  probeSelector:
+    matchLabels:
+      prometheus: main
+  probeNamespaceSelector:
+    matchLabels:
+      monitoring: prometheus
   # additionalScrapeConfigs:
   #   name: additional-scrape-configs
   #   key: prometheus-additional.yaml
