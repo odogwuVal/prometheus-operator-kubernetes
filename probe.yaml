@@ -2,12 +2,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: antonputra-com-web
+  name: ogtl-com-web
   namespace: monitoring
   labels:
     prometheus: main
 spec:
-  jobName: antonputra-web
+  jobName: ogtl-web
   interval: 15s
   module: http_2xx
   prober:
@@ -15,4 +15,9 @@ spec:
   targets:
     staticConfig:
       static:
+        - https://vreg.gov.ng
+        - https://www.vreg.gov.ng
+        - https://vreg.gov.ng/api
+        - https://idec.gov.ng
+        - https://api.idec.gov.ng
         

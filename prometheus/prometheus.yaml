@@ -5,17 +5,17 @@ metadata:
   name: main
   namespace: monitoring
 spec:
-  alerting:
-    alertmanagers:
-      - namespace: monitoring
-        name: alertmanager-operated
-        port: web
-  ruleSelector:
-    matchLabels:
-      prometheus: main
-  ruleNamespaceSelector:
-    matchLabels:
-      monitoring: prometheus
+  # alerting:
+  #   alertmanagers:
+  #     - namespace: monitoring
+  #       name: alertmanager-operated
+  #       port: web
+  # ruleSelector:
+  #   matchLabels:
+  #     prometheus: main
+  # ruleNamespaceSelector:
+  #   matchLabels:
+  #     monitoring: prometheus
   version: v2.42.0 #select your prefered version or use default version 
   serviceAccountName: prometheus
   podMonitorSelector:
@@ -24,21 +24,21 @@ spec:
   podMonitorNamespaceSelector:
     matchLabels:
       monitoring: prometheus # selects namespace wrt the attached labels{here, we can only create pod monitors in monitoring namespace}
-  serviceMonitorSelector:
-    matchLabels:
-      prometheus: main
-  serviceMonitorNamespaceSelector:
-    matchLabels:
-      monitoring: prometheus
-  probeSelector:
-    matchLabels:
-      prometheus: main
-  probeNamespaceSelector:
-    matchLabels:
-      monitoring: prometheus
-  additionalScrapeConfigs:
-    name: additional-scrape-configs
-    key: prometheus-additional.yaml
+  # serviceMonitorSelector:
+  #   matchLabels:
+  #     prometheus: main
+  # serviceMonitorNamespaceSelector:
+  #   matchLabels:
+  #     monitoring: prometheus
+  # probeSelector:
+  #   matchLabels:
+  #     prometheus: main
+  # probeNamespaceSelector:
+  #   matchLabels:
+  #     monitoring: prometheus
+  # additionalScrapeConfigs:
+  #   name: additional-scrape-configs
+  #   key: prometheus-additional.yaml
   resources:
     requests:
       cpu: 500m
@@ -49,8 +49,9 @@ spec:
   replicas: 1
   logLevel: info
   logFormat: logfmt
-  retention: 7d
+  # retention: 7d
   scrapeInterval: 15s
+  enableRemoteWriteReceiver: true
   securityContext:
     fsGroup: 0
     runAsNonRoot: false
@@ -58,6 +59,7 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
+        storageClassName: gp2
         resources:
           requests:
             storage: 20Gi
