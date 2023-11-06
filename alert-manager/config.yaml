@@ -25,7 +25,7 @@ stringData:
       slack_configs:
       - channel: "#application-uptime"
         send_resolved: true
-        api_url: "https://hooks.slack.com/services/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"
+        api_url: ""
         title: |-
           '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
         text: |-
