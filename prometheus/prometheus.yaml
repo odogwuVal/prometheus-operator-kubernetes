@@ -5,17 +5,17 @@ metadata:
   name: main
   namespace: monitoring
 spec:
-  # alerting:
-  #   alertmanagers:
-  #     - namespace: monitoring
-  #       name: alertmanager-operated
-  #       port: web
-  # ruleSelector:
-  #   matchLabels:
-  #     prometheus: main
-  # ruleNamespaceSelector:
-  #   matchLabels:
-  #     monitoring: prometheus
+  alerting:
+    alertmanagers:
+      - namespace: monitoring
+        name: alertmanager-operated
+        port: web
+  ruleSelector:
+    matchLabels:
+      prometheus: main
+  ruleNamespaceSelector:
+    matchLabels:
+      monitoring: prometheus
   version: v2.42.0 #select your prefered version or use default version 
   serviceAccountName: prometheus
   podMonitorSelector:

@@ -8,7 +8,7 @@ type: Opaque
 stringData:
   alertmanager.yaml: |-
     global:
-      resolve_timeout: 5m
+      resolve_timeout: 10m
     route:
       group_by:
         - alertname
@@ -19,11 +19,23 @@ stringData:
       routes:
       - receiver: slack-notifications
         match:
-          severity: warning
+          severity: critical
     receivers:
     - name: slack-notifications
       slack_configs:
-      - channel: "#alerts"
+      - channel: "#application-uptime"
         send_resolved: true
-        api_url: "https://hooks.slack.com/services/T01EJNXE7KR/B6tdc30D9/XKygUPr8uwygefooFgVKBgr"
-        text: "{{ range .Alerts }}<!channel> {{ .Annotations.summary }}\n{{ .Annotations.description }}\n{{ end }}"
+        api_url: "https://hooks.slack.com/services/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"
+        title: |-
+          '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
+        text: |-
+          {{ range .Alerts }}"
+            "*Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`"
+            "*Description:* {{ .Annotations.description }}"
+            "*Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:> *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>"
+            "*Details:*"
+            "{{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`"
+            "{{ end }}"
+          "{{ end }}"
+    templates:
+    - '/etc/alertmanager/config/*.tmpl'
