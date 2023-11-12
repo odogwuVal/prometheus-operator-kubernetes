@@ -24,12 +24,12 @@ spec:
   podMonitorNamespaceSelector:
     matchLabels:
       monitoring: prometheus # selects namespace wrt the attached labels{here, we can only create pod monitors in monitoring namespace}
-  # serviceMonitorSelector:
-  #   matchLabels:
-  #     prometheus: main
-  # serviceMonitorNamespaceSelector:
-  #   matchLabels:
-  #     monitoring: prometheus
+  serviceMonitorSelector:
+    matchLabels:
+      prometheus: main
+  serviceMonitorNamespaceSelector:
+    matchLabels:
+      monitoring: prometheus
   probeSelector:
     matchLabels:
       prometheus: main
