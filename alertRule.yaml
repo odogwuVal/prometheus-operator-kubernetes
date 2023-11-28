@@ -26,3 +26,11 @@ spec:
           annotations:
             summary: Endpoint is down (instance {{ $labels.instance }})
             description: "Endpoint {{ $labels.instance }} down"
+        - alert: PodRestart
+          expr: rate(k8s_container_restarts[1h]) * 3600 > 1
+          for: 10s
+          labels:
+            severity: critical
+          annotations:
+            summary: Endpoint is down (instance {{ $labels.instance }})
+            description: "Endpoint {{ $labels.instance }} down"
